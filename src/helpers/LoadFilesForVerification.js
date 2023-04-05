@@ -7,10 +7,21 @@ export function LoadSignedDocument() {
         setFile(event.target.files[0]);
     }
 
-    function handleSubmit(event) {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        // Use the file variable for further processing, e.g. uploading to a server
-    }
+        const formData = new FormData();
+        formData.append("file", file);
+        try {
+            const response = await fetch("http://localhost:8080/enveloped/verify-signature", {
+                method: "POST",
+                body: formData,
+            });
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div>
@@ -36,14 +47,26 @@ export function LoadSignedDocumentAndCertificate() {
         setXades(event.target.files[0])
     }
 
-    function handleSubmit2(event) {
+    const handleSubmit2 = async (event) => {
         event.preventDefault();
-        // Use the file variable for further processing, e.g. uploading to a server
-    }
+        const formData = new FormData();
+        formData.append("file", document);
+        formData.append("signature", xades);
+        try {
+            const response = await fetch("http://localhost:8080/detached/verify-signature", {
+                method: "POST",
+                body: formData,
+            });
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <div>
-            <h5>Podpis XAdES - załaduj plik oraz cert xml</h5>
+            <h4>Podpis XAdES - załaduj plik oraz cert xml</h4>
             <form onSubmit={handleSubmit2}>
                 <input type="file" onChange={handleDocumentChange}/>
                 <input type="file" onChange={handleXadesChange} />
