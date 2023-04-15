@@ -1,12 +1,75 @@
-.container {
+.header {
+    background-color: #f4e04d;
+    min-height: 10vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #000000;
 }
 
-.header {
-    width: 50%;
+.verification-type-headers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.App {
     text-align: center;
-    margin: 0 auto;
+}
+
+.stock-container {
+    padding-left: 3em;
+    padding-right: 3em;
+    margin-top: 3em;
+}
+
+button {
+    background-color: #ffffff;
+
+    border: none;
+    border-radius: 4px;
+
+    font-size: 16px;
+    font-weight: bold;
+    color: #000000;
+
+    padding: 12px 24px;
+
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
+    transition: all 0.2s ease-in-out;
+}
+button:hover {
+    background-color: #68a7cb;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+input[type="file"] {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+    padding: 8px;
+
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
+    transition: all 0.2s ease-in-out;
+}
+input[type="file"]:hover,
+input[type="file"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+body {
+    background-color: #e8ecee;
 }

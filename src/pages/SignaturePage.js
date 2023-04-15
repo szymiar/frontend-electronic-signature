@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/HomePageStyle.css';
+import '../styles/SignaturePageStyle.css';
 import {LoadDocumentForPadesSignature, LoadDocumentForPadesVisibleSignature,
     LoadDocumentForXadesSignature} from "../helpers/LoadFilesForSignature";
 

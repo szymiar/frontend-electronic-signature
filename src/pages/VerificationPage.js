@@ -1,18 +1,45 @@
 import {LoadSignedDocument, LoadSignedDocumentAndCertificate} from "../helpers/LoadFilesForVerification";
-import React from "react";
+import React, {useState} from "react";
 
+function VerificationPage() {
+    const [selectedOption, setSelectedOption] = useState(null);
 
-const VerificationPage = () => {
+    const handleOptionSelect = (event) => {
+        setSelectedOption(event.target.value);
+        handleButtonClick();
+    };
+
+    function handleButtonClick() {
+        switch(selectedOption) {
+            case 'pades':
+                return (
+                    <LoadSignedDocument />
+                )
+            case 'xades':
+                return (
+                    <LoadSignedDocumentAndCertificate />
+                )
+            default:
+                break;
+        }
+    }
+
     return (
         <>
-            <h1>Wybierz rodzaj podpisu do weryfikacji</h1>
-            {/*<button onClick={LoadSignedDocument}>PAdES</button>*/}
-            {/*<button onClick={LoadSignedDocumentAndCertificate}>XAdES</button>*/}
-            <LoadSignedDocument />
-            <LoadSignedDocumentAndCertificate />
+            <h1 className="header">Wybierz rodzaj podpisu do weryfikacji</h1>
+            <div style={{ textAlign: 'center' }}>
+                <select  style={{ fontSize: '20px', padding: '6px', textAlignLast: 'center'}} value={selectedOption} onChange={handleOptionSelect}>
+                    <option value="" style={{textAlignLast: 'center'}}>-</option>
+                    <option style={{textAlignLast: 'center'}} value="pades">PAdES</option>
+                    <option style={{textAlignLast: 'center'}} value="xades">XAdES</option>
+                </select>
+            </div>
+            {selectedOption && (
+                handleButtonClick()
+            )}
         </>
 
     );
-};
+}
 
 export default VerificationPage;
