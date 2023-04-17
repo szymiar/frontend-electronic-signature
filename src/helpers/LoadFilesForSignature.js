@@ -2,24 +2,40 @@ import React, { useState } from 'react';
 
 export function LoadDocumentForPadesSignature() {
     const [file, setFile] = useState(null);
+    const [submitInfo, setSubmitInfo] = useState(null);
 
-    function handleFileChange(event) {
+    const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     }
 
-    function handleSubmit(event) {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setSubmitInfo(event)
+    }
+
+    const handleReset = (event) => {
+        setSubmitInfo(false)
+        setFile(null)
+    }
+
+    function useSendFileToSign(event) {
         event.preventDefault();
         // Use the file variable for further processing, e.g. uploading to a server
     }
 
     return (
-        <div>
-            <h4>Podpis PAdES</h4>
+        <div style={{ textAlign: 'center' }}>
             <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleFileChange} />
-                <button type="submit">Wyślij do podpisania</button>
-                <button type="reset">Anuluj</button>
+                <input className={"input"} type="file" onChange={handleFileChange} />
+                <br/><br/>
+                <button className={"button"} type="submit">Wyślij do podpisania</button>
+                <button className={"button"} type="reset" onClick={handleReset}>Anuluj</button>
             </form>
+            {submitInfo && file && (
+                <div>
+                    <h4>Wysłano plik</h4>
+                </div>
+            )}
         </div>
     );
 }
@@ -27,24 +43,40 @@ export function LoadDocumentForPadesSignature() {
 
 export function LoadDocumentForPadesVisibleSignature() {
     const [file, setFile] = useState(null);
+    const [submitInfo, setSubmitInfo] = useState(null);
 
-    function handleFileChange(event) {
+    const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     }
 
-    function handleSubmit(event) {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setSubmitInfo(event)
+    }
+
+    const handleReset = (event) => {
+        setSubmitInfo(false)
+        setFile(null)
+    }
+
+    function useSendFileToSign(event) {
         event.preventDefault();
         // Use the file variable for further processing, e.g. uploading to a server
     }
 
     return (
-        <div>
-            <h4>Podpis PAdES - widoczny</h4>
+        <div style={{ textAlign: 'center' }}>
             <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleFileChange} />
-                <button type="submit">Wyślij do podpisania</button>
-                <button type="reset">Anuluj</button>
+                <input className={"input"} type="file" onChange={handleFileChange} />
+                <br/><br/>
+                <button className={"button"} type="submit">Wyślij do podpisania</button>
+                <button className={"button"} type="reset" onClick={handleReset}>Anuluj</button>
             </form>
+            {submitInfo && file && (
+                <div>
+                    <h4>Wysłano plik</h4>
+                </div>
+            )}
         </div>
     );
 }
@@ -52,24 +84,40 @@ export function LoadDocumentForPadesVisibleSignature() {
 
 export function LoadDocumentForXadesSignature() {
     const [file, setFile] = useState(null);
+    const [submitInfo, setSubmitInfo] = useState(null);
 
-    function handleFileChange(event) {
+    const handleFileChange = (event) => {
         setFile(event.target.files[0]);
     }
 
-    function handleSubmit(event) {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setSubmitInfo(event)
+    }
+
+    const handleReset = (event) => {
+        setSubmitInfo(false)
+        setFile(null)
+    }
+
+    function useSendFileToSign(event) {
         event.preventDefault();
         // Use the file variable for further processing, e.g. uploading to a server
     }
 
     return (
-        <div>
-            <h4>Podpis XAdES</h4>
+        <div style={{ textAlign: 'center' }}>
             <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleFileChange} />
-                <button type="submit">Wyślij do podpisania</button>
-                <button type="reset">Anuluj</button>
+                <input className={"input"} type="file" onChange={handleFileChange} />
+                <br/><br/>
+                <button className={"button"} type="submit">Wyślij do podpisania</button>
+                <button className={"button"} type="reset" onClick={handleReset}>Anuluj</button>
             </form>
+            {submitInfo && file && (
+                <div>
+                    <h4>Wysłano plik</h4>
+                </div>
+            )}
         </div>
     );
 }

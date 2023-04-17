@@ -1,0 +1,30 @@
+.faq-container {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 800px;
+    background-color: #f1f1f1;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    transform-origin: bottom;
+    transition: height 0.3s ease-in-out;
+}
+
+li {
+    cursor: pointer;
+}
+
+.active h3 {
+    color: blue;
+}
+
+.active p {
+    display: block;
+}
+
+p {
+    display: none;
+}

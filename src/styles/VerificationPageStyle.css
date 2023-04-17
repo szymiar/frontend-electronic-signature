@@ -38,10 +38,12 @@ td {
 }
 
 .signature-data-list {
-    list-style: none;
-    padding: 0;
-    float: right;
-    margin-right: 150px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* add some space between items */
+
+    /*list-style: none;*/
+    /*justify-content: center;*/
 }
 
 .signature-data-list li {
@@ -50,11 +52,14 @@ td {
 
 .key {
     font-weight: bold;
-    color: #666;
+    color: #22221e;
+    flex: 1;
+    padding-right: 10px;
 }
 
 .value {
-    color: #333;
+    flex: 2;
+    color: #000000;
 }
 
 button {
@@ -94,6 +99,9 @@ input[type="file"] {
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 
     transition: all 0.2s ease-in-out;
+
+    max-width: 300px;
+    word-wrap: break-word;
 }
 input[type="file"]:hover,
 input[type="file"]:focus {

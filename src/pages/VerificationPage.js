@@ -1,5 +1,6 @@
 import {LoadSignedDocument, LoadSignedDocumentAndCertificate} from "../helpers/LoadFilesForVerification";
 import React, {useState} from "react";
+import {VerificationPageFAQ} from "../helpers/FAQ";
 
 function VerificationPage() {
     const [selectedOption, setSelectedOption] = useState(null);
@@ -37,6 +38,7 @@ function VerificationPage() {
             {selectedOption && (
                 handleButtonClick()
             )}
+            <VerificationPageFAQ />
         </>
 
     );

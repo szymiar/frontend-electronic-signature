@@ -1,21 +1,53 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../styles/SignaturePageStyle.css';
 import {LoadDocumentForPadesSignature, LoadDocumentForPadesVisibleSignature,
     LoadDocumentForXadesSignature} from "../helpers/LoadFilesForSignature";
+import {SignaturePageFAQ} from "../helpers/FAQ";
 
-const SignaturePage = () => {
+function SignaturePage() {
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    const handleOptionSelect = (event) => {
+        setSelectedOption(event.target.value);
+        handleButtonClick();
+    };
+
+    function handleButtonClick() {
+        switch(selectedOption) {
+            case 'pades':
+                return (
+                    <LoadDocumentForPadesSignature />
+                )
+            case 'xades':
+                return (
+                    <LoadDocumentForXadesSignature />
+                )
+            case 'pades-visible':
+                return (
+                    <LoadDocumentForPadesVisibleSignature />
+                )
+            default:
+                break;
+        }
+    }
+
     return (
-        <div className="container">
+        <>
             <h1 className="header">Wybierz odpowiedni podpis</h1>
-            {/*<button onClick={LoadSignedDocument}>PAdES</button>*/}
-            {/*<button onClick={LoadSignedDocument}>PAdES widoczny</button>*/}
-            {/*<button onClick={LoadSignedDocumentAndCertificate}>XAdES</button>*/}
-            <LoadDocumentForPadesSignature />
-            <LoadDocumentForPadesVisibleSignature />
-            <LoadDocumentForXadesSignature />
-        </div>
-
+            <div style={{ textAlign: 'center' }}>
+                <select  style={{ fontSize: '20px', padding: '6px', textAlignLast: 'center'}} value={selectedOption} onChange={handleOptionSelect}>
+                    <option value="" style={{textAlignLast: 'center'}}>-</option>
+                    <option style={{textAlignLast: 'center'}} value="pades">PAdES</option>
+                    <option style={{textAlignLast: 'center'}} value="pades-visible">PAdES widoczny</option>
+                    <option style={{textAlignLast: 'center'}} value="xades">XAdES</option>
+                </select>
+            </div>
+            {selectedOption && (
+                handleButtonClick()
+            )}
+            <SignaturePageFAQ />
+        </>
     );
-};
+}
 
 export default SignaturePage;
