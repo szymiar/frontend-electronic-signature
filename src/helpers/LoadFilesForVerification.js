@@ -15,6 +15,7 @@ export function LoadSignedDocument() {
     const [file, setFile] = useState(null);
     const [submitInfo, setSubmitInfo] = useState(null);
     const [verificationData, setVerificationData] = useState(null);
+    const [verificationResult, setVerificationResult] = useState(null);
 
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
@@ -30,6 +31,7 @@ export function LoadSignedDocument() {
         setSubmitInfo(false)
         setFile(null)
         setVerificationData(null)
+        setVerificationResult(null)
     }
 
     const getVerificationData = async (event) => {
@@ -37,12 +39,14 @@ export function LoadSignedDocument() {
         const formData = new FormData();
         formData.append("file", file);
         try {
-            const response = await fetch("http://20.71.10.216:9000/guest/verify-signed-pdf", {
+            // "http://20.71.10.216:9000/guest/verify-signed-pdf"
+            const response = await fetch("http://localhost:8080/guest/verify-signed-pdf", {
                 method: "POST",
                 body: formData,
             });
             const data = await response.json();
             setVerificationData(data);
+            setVerificationResult(data.result);
         } catch (error) {
             console.error(error);
         }
@@ -54,29 +58,35 @@ export function LoadSignedDocument() {
                     <input className={"input"} type="file" onChange={handleFileChange}/>
                     <br/><br/>
                     <button className={"button"} type="submit">Wyślij do sprawdzenia</button>
-                    <button className={"button"} type="reset" onClick={handleReset}>Anuluj</button>
+                    <button className={"button"} type="reset" onClick={handleReset}>Wyczyść</button>
                 </form>
-                {submitInfo && file && (
+                {submitInfo && file && verificationData && verificationResult === 'TOTAL_PASSED' &&(
                     <div>
                         <ul className="signature-data-list">
-                            {Object.keys(mockSignatureData).map((key, index) => (
-                                <div className="item">
-                                    <div className="key">{key}</div>
-                                    <div className="value">{mockSignatureData[key]}</div>
-                                </div>
-                            ))}
+                            <h4>Dane podpisu:</h4>
+                            <div className="item">
+                                <div className="key">Imię i nazwisko</div>
+                                <div className="value">{verificationData.fullName}</div>
+                            </div>
+                            <div className="item">
+                                <div className="key">Data podpisania</div>
+                                <div className="value">{verificationData.date}</div>
+                            </div>
+                            <div className="item">
+                                <div className="key">Rezultat</div>
+                                <div className="value">Dokument podpisany!</div>
+                            </div>
                         </ul>
                     </div>
                 )}
-                { verificationData && (
+                {submitInfo && file && verificationData && verificationResult !== 'TOTAL_PASSED' &&(
                     <div>
-                        <ul className="signature-data-list">
-                            {Object.keys(verificationData).map((key, index) => (
-                                <li key={index}>
-                                    {key} : {verificationData[key]}
-                                </li>
-                            ))}
-                        </ul>
+                        <h2>Ten dokument nie jest podpisany!</h2>
+                    </div>
+                )}
+                {submitInfo && file && verificationData && verificationResult === 'TOTAL_FAILED' &&(
+                    <div>
+                        <h2>Ten dokument został zmodyfikowany od czasu podpisania!</h2>
                     </div>
                 )}
             </div>
@@ -88,6 +98,7 @@ export function LoadSignedDocumentAndCertificate() {
     const [xades, setXades] = useState(null);
     const [submitInfo, setSubmitInfo] = useState(null);
     const [verificationData, setVerificationData] = useState(null);
+    const [verificationResult, setVerificationResult] = useState(null);
 
     function handleDocumentChange(event) {
         setDocument(event.target.files[0]);
@@ -107,6 +118,8 @@ export function LoadSignedDocumentAndCertificate() {
         setSubmitInfo(false)
         setDocument(null)
         setXades(null)
+        setVerificationData(null)
+        setVerificationResult(null)
     }
 
     const getVerificationData = async (event) => {
@@ -115,12 +128,13 @@ export function LoadSignedDocumentAndCertificate() {
         formData.append("file", document);
         formData.append("signature", xades);
         try {
-            const response = await fetch("http://20.71.10.216:9000/guest/verify-signature", {
+            const response = await fetch("http://localhost:8080/guest/verify-signature", {
                 method: "POST",
                 body: formData,
             });
             const data = await response.json();
             setVerificationData(data);
+            setVerificationResult(data.result)
         } catch (error) {
             console.error(error);
         }
@@ -134,30 +148,51 @@ export function LoadSignedDocumentAndCertificate() {
                 <input className={"input"} type="file" onChange={handleXadesChange} />
                 <br/><br/>
                 <button className={"button"} type="submit">Wyślij do sprawdzenia</button>
-                <button className={"button"} type="reset" onClick={handleReset}>Anuluj</button>
+                <button className={"button"} type="reset" onClick={handleReset}>Wyczyść</button>
             </form>
-            {submitInfo && document && xades && (
+            {submitInfo && document && xades && verificationData && verificationResult === 'TOTAL_PASSED' &&(
                 <div>
                     <ul className="signature-data-list">
-                        {Object.keys(mockSignatureData).map((key, index) => (
-                            <li key={index}>
-                                {key} : {mockSignatureData[key]}
-                            </li>
-                        ))}
+                        <h4>Dane podpisu:</h4>
+                        <div className="item">
+                            <div className="key">Imię i nazwisko</div>
+                            <div className="value">{verificationData.fullName}</div>
+                        </div>
+                        <div className="item">
+                            <div className="key">Data podpisania</div>
+                            <div className="value">{verificationData.date}</div>
+                        </div>
+                        <div className="item">
+                            <div className="key">Rezultat</div>
+                            <div className="value">Ten dokument jest podpisany!</div>
+                        </div>
                     </ul>
                 </div>
             )}
-            { verificationData && (
+            {submitInfo && document && xades && verificationData && verificationResult === null &&(
                 <div>
-                    <ul className="signature-data-list">
-                        {Object.keys(verificationData).map((key, index) => (
-                            <li key={index}>
-                                {key} : {verificationData[key]}
-                            </li>
-                        ))}
-                    </ul>
+                    <h2>Ten dokument nie jest podpisany!</h2>
+                </div>
+            )}
+            {submitInfo && document && xades && verificationData && verificationResult === 'TOTAL_FAILED' &&(
+                <div>
+                    <h2>Ten dokument został zmodyfikowany od czasu podpisania!</h2>
+                </div>
+            )}
+            {submitInfo && document && xades && verificationData && verificationResult === 'INDETERMINATE' &&(
+                <div>
+                    <h2>To nie jest dokument powiązany z podanym podpisem xades!</h2>
                 </div>
             )}
         </div>
     );
 }
+
+
+
+{/*{Object.keys(verificationData).map((key, index) => (*/}
+{/*    <div className="item">*/}
+{/*        <div className="key">{key}</div>*/}
+{/*        <div className="value">{verificationData[key]}</div>*/}
+{/*    </div>*/}
+{/*))}*/}
