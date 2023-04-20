@@ -1,16 +1,30 @@
-.faq-container {
+.faq-container-wrapper {
     position: fixed;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.faq-btn {
+    position: absolute;
+    top: -30px;
+    background-color: #f1f1f1;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.faq-container {
     width: 80%;
     max-width: 800px;
     background-color: #f1f1f1;
     padding: 20px;
     box-sizing: border-box;
     overflow: hidden;
-    transform-origin: bottom;
-    transition: height 0.3s ease-in-out;
 }
 
 li {
