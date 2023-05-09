@@ -1,14 +1,23 @@
 import {LoadSignedDocument, LoadSignedDocumentAndCertificate} from "../helpers/LoadFilesForVerification";
 import React, {useState} from "react";
 import {VerificationPageFAQ} from "../helpers/FAQ";
+import LoginButton from "../keycloak/KeyCloakLogin";
+import LogoutButton from "../keycloak/KeycloakLogout";
+import {useKeycloak} from "@react-keycloak/web";
+import UsernameDisplay from "../keycloak/UsernameDisplay";
 
 function VerificationPage() {
     const [selectedOption, setSelectedOption] = useState(null);
+    const { keycloak } = useKeycloak();
 
     const handleOptionSelect = (event) => {
         setSelectedOption(event.target.value);
         handleButtonClick();
     };
+
+    if (keycloak.authenticated) {
+        window.accessToken = keycloak.token;
+    }
 
     function handleButtonClick() {
         switch(selectedOption) {
@@ -38,6 +47,9 @@ function VerificationPage() {
             {selectedOption && (
                 handleButtonClick()
             )}
+            <LoginButton />
+            <LogoutButton  />
+            <UsernameDisplay  />
             <VerificationPageFAQ />
         </>
 

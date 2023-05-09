@@ -15,9 +15,6 @@ const Layout = () => {
                     <li>
                         <Link to="/weryfikacja">Zweryfikuj podpis</Link>
                     </li>
-                    <li>
-                        <Link to="/test">Testowanie kodu js</Link>
-                    </li>
                 </ul>
             </nav>
 

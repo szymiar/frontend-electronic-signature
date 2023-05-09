@@ -6,17 +6,28 @@ import HomePage from "./pages/HomePage";
 import SignaturePage from "./pages/SignaturePage";
 import VerificationPage from "./pages/VerificationPage";
 import NoPage from "./pages/NoPage";
-import TestPage from "./pages/TestPage";
+import { ReactKeycloakProvider, useKeycloak } from "@react-keycloak/web";
+import keycloak from "./keycloak/KeyCloak";
 
 export default function App() {
+
+    const { keycloak, initialized } = useKeycloak();
+
+    // if (!initialized) {
+    //     return <div>Loading...</div>;
+    // }
+
+    if (keycloak.authenticated) {
+        window.accessToken = keycloak.token;
+    }
+
     return (
         <BrowserRouter>
             <Routes >
                 <Route path="/" element={<Layout />}>
                     <Route index element={<HomePage />} />
-                    <Route path="podpis" element={<SignaturePage />} />
+                    <Route path="podpis" element={<SignaturePage previousPage={window.location.href} />} />
                     <Route path="weryfikacja" element={<VerificationPage />} />
-                    <Route path="test" element={<TestPage />} />
                     <Route path="*" element={<NoPage />} />
                 </Route>
             </Routes>
@@ -25,4 +36,8 @@ export default function App() {
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+root.render(
+    <ReactKeycloakProvider authClient={keycloak}>
+        <App />
+    </ReactKeycloakProvider>
+);
