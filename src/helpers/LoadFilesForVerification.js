@@ -29,7 +29,7 @@ export function LoadSignedDocument() {
         const formData = new FormData();
         formData.append("file", file);
         try {
-            const response = await fetch("http://localhost:8080/guest/verify-signed-pdf", {
+            const response = await fetch("https://elkasymulacja.pl:8443/guest/verify-signed-pdf", {
                 method: "POST",
                 body: formData,
             });
@@ -117,7 +117,7 @@ export function LoadSignedDocumentAndCertificate() {
         formData.append("file", document);
         formData.append("signature", xades);
         try {
-            const response = await fetch("http://localhost:8080/guest/verify-signature", {
+            const response = await fetch("https://elkasymulacja.pl:8443/guest/verify-signature", {
                 method: "POST",
                 body: formData,
             });

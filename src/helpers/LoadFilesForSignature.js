@@ -43,7 +43,7 @@ export function LoadDocumentForPadesSignature() {
         };
 
         try {
-            const response = await fetch('http://localhost:8080/enveloped/sign-document', options);
+            const response = await fetch('https://elkasymulacja.pl:8443/enveloped/sign-document', options);
             const blob = await response.blob();
             FileSaver.saveAs(blob, file.name.slice(0, file.name.lastIndexOf(".")) + '_podpisany_dokument.pdf');
         } catch (error) {
@@ -109,7 +109,7 @@ export function LoadDocumentForPadesVisibleSignature() {
         };
 
         try {
-            const response = await fetch('http://localhost:8080/enveloped/sign-document-visibly', options);
+            const response = await fetch('https://elkasymulacja.pl:8443/enveloped/sign-document-visibly', options);
             const blob = await response.blob();
             FileSaver.saveAs(blob, file.name.slice(0, file.name.lastIndexOf(".")) + '_podpisany_dokument.pdf');
         } catch (error) {
@@ -175,7 +175,7 @@ export function LoadDocumentForXadesSignature() {
         };
 
         try {
-            const response = await fetch('http://localhost:8080/detached/sign-document', options);
+            const response = await fetch('https://elkasymulacja.pl:8443/detached/sign-document', options);
             const blob = await response.blob();
             FileSaver.saveAs(blob, file.name.slice(0, file.name.lastIndexOf(".")) + '_podpis_xades.xml');
         } catch (error) {

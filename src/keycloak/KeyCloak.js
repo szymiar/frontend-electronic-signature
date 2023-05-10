@@ -1,9 +1,9 @@
 import Keycloak from "keycloak-js";
 
 const keycloak = new Keycloak({
-    url: "http://localhost:8081",
-    realm: "testRealm",
-    clientId: "react-client",
+    url: "https://elkasymulacja.pl/auth/",
+    realm: "elkasymulacja",
+    clientId: "signature-frontend",
 });
 
 export default keycloak;
