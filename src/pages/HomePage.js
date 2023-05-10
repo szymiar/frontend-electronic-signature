@@ -6,7 +6,7 @@ import UsernameDisplay from "../keycloak/UsernameDisplay";
 function HomePage() {
     return (
         <>
-            <h1 className={"header"}>Studencki system podpisu elektronicznego </h1>
+            <h1 className={"header"}>System Podpisu Elektronicznego </h1>
             <LoginButton />
             <LogoutButton  />
             <UsernameDisplay  />

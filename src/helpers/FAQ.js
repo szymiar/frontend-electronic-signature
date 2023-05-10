@@ -16,16 +16,16 @@ export function SignaturePageFAQ() {
 
     const questions = [
         {
-            question: 'Co to jest PAdES',
-            answer: 'Było 10000 razy, używaj szukaj. Temat zamykam',
+            question: 'Podpis PAdES',
+            answer: 'Jest to typ podpisu dedykowany dla plików PDF. Podpis zostaje zagnieżdżony w pliku. Nie należy podawać innegom pliku niż pdf.',
         },
         {
-            question: 'Nie działa mi, co mam zrobić',
-            answer: 'Zrestartuj komputer i spróbuj ponownie',
+            question: 'Podpis XAdES',
+            answer: 'Jest to podpis, którego można użyć do dowolnego rodzaju pliku. Utworzony zostanie plik z podpisem w formacie xml.',
         },
         {
-            question: 'Co to jest PAdES widoczny',
-            answer: 'To jest pades, tylko widoczny',
+            question: 'Podpis PAdES widoczny',
+            answer: 'W tym wypadku zostanie utworzony podpis pades, a dodatkowo w dolnym rogu pierwszej strony dokumentu pojawią się dane osoby podpisującej(zalogowanej)',
         },
     ];
 
@@ -70,16 +70,12 @@ export function VerificationPageFAQ() {
 
     const questions = [
         {
-            question: 'Co to jest PAdES',
-            answer: 'Było 10000 razy, używaj szukaj. Temat zamykam',
+            question: 'Weryfikacja PAdES',
+            answer: 'Jest to typ podpisu dedykowany dla plików PDF. Do weryfikacji należy podać podpisany plik PDF',
         },
         {
-            question: 'Nie działa mi, co mam zrobić',
-            answer: 'Zrestartuj komputer i spróbuj ponownie',
-        },
-        {
-            question: 'Co to jest PAdES widoczny',
-            answer: 'To jest pades, tylko widoczny',
+            question: 'Weryfikacja XAdES',
+            answer: 'Typ podpisu obsługujący dowolny format plików. Do weryfikacji należy podać podpisany wcześniej plik, oraz plik z podpisem w formacie xml',
         },
     ];
 

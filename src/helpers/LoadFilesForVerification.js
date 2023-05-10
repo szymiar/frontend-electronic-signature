@@ -1,16 +1,6 @@
 import React, {useState} from 'react';
 import "../styles/VerificationPageStyle.css";
 
-const mockSignatureData =
-    {
-        name: "Jan Ciasto",
-        email: "jan.ciasto@email.com",
-        index: "5817059873409211234",
-        date: "2023 04 05",
-        validDate: "2023 05 23",
-        result: "TOTAL_PASSED"
-    };
-
 export function LoadSignedDocument() {
     const [file, setFile] = useState(null);
     const [submitInfo, setSubmitInfo] = useState(null);
@@ -39,7 +29,6 @@ export function LoadSignedDocument() {
         const formData = new FormData();
         formData.append("file", file);
         try {
-            // "http://20.71.10.216:9000/guest/verify-signed-pdf"
             const response = await fetch("http://localhost:8080/guest/verify-signed-pdf", {
                 method: "POST",
                 body: formData,
@@ -187,12 +176,3 @@ export function LoadSignedDocumentAndCertificate() {
         </div>
     );
 }
-
-
-
-{/*{Object.keys(verificationData).map((key, index) => (*/}
-{/*    <div className="item">*/}
-{/*        <div className="key">{key}</div>*/}
-{/*        <div className="value">{verificationData[key]}</div>*/}
-{/*    </div>*/}
-{/*))}*/}
