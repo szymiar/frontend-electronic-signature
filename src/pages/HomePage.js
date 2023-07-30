@@ -30,7 +30,7 @@ function HomePage() {
                    Dodatkowe informacje znajdują się na kolejnych stronach w sekcjach "FAQ"
                     <h2>Certyfikat do lokalnej weryfikacji offline</h2>
                     <ul>
-                        <li>Do weryfikacji podpisanych dokumentów offline można skorzystać z naszego certyfikatu: <a href={'https://wutwaw-my.sharepoint.com/personal/01149354_pw_edu_pl/_layouts/15/onedrive.aspx?id=%2Fpersonal%2F01149354%5Fpw%5Fedu%5Fpl%2FDocuments%2Finzyniera%2FPublicCertificate%2Ecer&parent=%2Fpersonal%2F01149354%5Fpw%5Fedu%5Fpl%2FDocuments%2Finzyniera&ga=1'} target="_blank" rel="noopener noreferrer">>{'pobierz certyfikat'}</a></li>
+                        <li>Do weryfikacji podpisanych dokumentów offline można skorzystać z naszego certyfikatu: <a href={'https://filetransferforelka.blob.core.windows.net/publiccert/PublicCertificate.cer'} target="_blank" rel="noopener noreferrer">>{'pobierz certyfikat'}</a></li>
                         <li>Certyfikat należy pobrać i dodać do zaufanych certyfikatów na swoim urządzeniu</li>
                         <li>Dzięki temu możliwa będzie lokalna weryfikacja podpisanych dokumentów przy użyciu zewnętrznego oprogramowania</li>
                     </ul>
